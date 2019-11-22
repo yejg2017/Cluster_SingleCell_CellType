@@ -7,6 +7,7 @@ Use the method to auto classify cell type in single cell
 ### Requirement
  - R( version >3.5),最好通过 [conda](https://anaconda.org/)来配置,*conda install -c r r-base*
  - Seurat,一个目前比较流行的单细胞分析程序包，参考官网[satijalab](https://satijalab.org/seurat)
+ - cellassign，需要提前装tensorflow,参考官网(https://github.com/Irrationone/cellassign)
  - monocle(version 2)，单细胞分析程序包，主要用来做newCellTypeHierarchy方法的
  - monocle3,这个版本的monocle3看基本上跟monocle（version 2）很大区别，具体看[官网](https://cole-trapnell-lab.github.io/monocle3)
  - garnnet,跟monocle和monocle3配套使用，参考[官网]（https://cole-trapnell-lab.github.io/garnett）
@@ -51,3 +52,4 @@ Seurat2Monocle<-function(seurat,slot="counts"){
 Garnett方法可以兼容monocle2 和monocle3包，但是，monocle2 需要先使用Seurat2Monocle函数转化为monocle对象才行，
 而monocle3不需要，直接使用monocle生成的对象来使用garnett里面的方法（garnett针对monocle2 ，
 monocle3的安装方法也稍微不一样，具体看官网安装方法）
+   - [garnett_classifier](./garnett_classifier)文件夹保存着提前训练好的garnett 分类器以及实例的marker.txt 文件
