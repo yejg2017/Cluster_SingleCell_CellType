@@ -11,3 +11,41 @@ Use the method to auto classify cell type in single cell
  - monocle3,这个版本的monocle3看基本上跟monocle（version 2）很大区别，具体看[官网](https://cole-trapnell-lab.github.io/monocle3)
  - garnnet,跟monocle和monocle3配套使用，参考[官网]（https://cole-trapnell-lab.github.io/garnett）
  - ggplot2 ...等等这些不一一赘述
+ 
+###  注意
+* Seurat 处理好的seurat 对象目前不能直接通过里面的函数来互相转化了，需要自己码函数
+``` R
+Seurat2Monocle<-function(seurat,slot="counts"){
+  # slot: counts or data or scaled.data
+  #Load Seurat object
+  require(monocle)
+  if(class(seurat)[[1]]=="Seurat"){
+    seurat_object<-seurat
+  }else{
+    seurat_object <- readRDS(seurat)
+  }
+
+  #Extract data, phenotype data, and feature data from the SeuratObject
+  #data <- as(as.matrix(seurat_object@assays$RNA@data), 'sparseMatrix')
+  #data<-as.sparse(seurat_object@assays$RNA@data)
+  data<-GetAssayData(seurat_object,slot)
+  pd <- new('AnnotatedDataFrame', data = seurat_object@meta.data)
+
+  fData <- data.frame(gene_short_name = row.names(data), row.names = row.names(data))
+  fd <- new('AnnotatedDataFrame', data = fData)
+
+  #Construct monocle cds
+  print("Create monocle object")
+  monocle_cds <- newCellDataSet(data,
+                                phenoData = pd,
+                                featureData = fd,
+                                lowerDetectionLimit = 0.1,
+                                expressionFamily = negbinomial.size())
+  #print("save monocle object")
+  #saveRDS(monocle_cds,file=monocle.path)
+  return(monocle_cds)
+}
+```
+
+### Garnett
+    Garnett方法可以兼容monocle2 和monocle3包，但是，monocle2 需要先使用Seurat2Monocle函数转化为monocle对象才行，而monocle3不需要，直接使用monocle生成的对象来使用garnett里面的方法（garnett针对monocle2 ，monocle3的安装方法也稍微不一样，具体看官网安装方法）
