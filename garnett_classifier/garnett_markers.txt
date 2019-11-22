@@ -1,0 +1,31 @@
+>Microglia
+expressed: C1QB,CD74
+
+>Muller glia and astrocytes
+expressed: GLUL
+references: https://www.biolegend.com/essential_markers
+
+>Retinal ganglion cells
+expressed: SOX11,NEFM,NEFL,RBPMS,SNCG
+references: https://www.biolegend.com/essential_markers
+
+>Astrocyte
+expressed: GYPC,GFAP
+
+>Amacrine cells
+expressed: GAD1,TFAP2A,SLC18A3
+
+>Rod
+expressed: SAG,RHO,CNGA1,PDE6A,MALAT1,PDE6G
+
+>Cone
+expressed: GUCA1C,ARR3,PDE6H
+
+>Progenitor cells
+expressed: SOX2
+
+>Horizontal cells
+expressed: SLC12A7,ONECUT1,ONECUT2
+
+>Bipolar cells
+expressed: TMEM215,GSG1,VSX1,PCP2,GRIK1
