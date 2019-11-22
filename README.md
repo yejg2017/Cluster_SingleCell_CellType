@@ -48,4 +48,6 @@ Seurat2Monocle<-function(seurat,slot="counts"){
 ```
 
 ### Garnett
-    Garnett方法可以兼容monocle2 和monocle3包，但是，monocle2 需要先使用Seurat2Monocle函数转化为monocle对象才行，而monocle3不需要，直接使用monocle生成的对象来使用garnett里面的方法（garnett针对monocle2 ，monocle3的安装方法也稍微不一样，具体看官网安装方法）
+Garnett方法可以兼容monocle2 和monocle3包，但是，monocle2 需要先使用Seurat2Monocle函数转化为monocle对象才行，
+而monocle3不需要，直接使用monocle生成的对象来使用garnett里面的方法（garnett针对monocle2 ，
+monocle3的安装方法也稍微不一样，具体看官网安装方法）
